@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { Analytics } from "@vercel/analytics/react";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 import { PasswordGate } from "@/components/PasswordGate";
 import { siteConfig } from "@/lib/config/site-config";
@@ -21,6 +20,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
+  referrer: 'no-referrer',
   icons: {
     icon: '/icon.png',
   },
@@ -41,7 +41,6 @@ export default function RootLayout({
           <PasswordGate hasEnvPassword={!!process.env.ACCESS_PASSWORD}>
             {children}
           </PasswordGate>
-          <Analytics />
           <ServiceWorkerRegister />
         </ThemeProvider>
 
